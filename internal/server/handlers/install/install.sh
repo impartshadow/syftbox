@@ -8,17 +8,17 @@ set -e
 # - setup-only: Download + login, but don't run, no prompts  
 # - interactive: Download + login + prompt to run (default)
 
-# Default installation mode (can be overridden by INSTALL_MODE env var)
-INSTALL_MODE=${INSTALL_MODE:-"interactive"}
+# Prefer documented SYFTBOX_* settings; retain legacy unprefixed fallbacks.
+INSTALL_MODE=${SYFTBOX_INSTALL_MODE:-${INSTALL_MODE:-"interactive"}}
 
 # Apps to install (comma separated list)
-INSTALL_APPS=${INSTALL_APPS:-""}
+INSTALL_APPS=${SYFTBOX_INSTALL_APPS-${INSTALL_APPS:-""}}
 
 # Debug mode (can be overridden by SYFTBOX_DEBUG env var)
-DEBUG=${DEBUG:-"0"}
+DEBUG=${SYFTBOX_DEBUG:-${DEBUG:-"0"}}
 
 APP_NAME="syftbox"
-ARTIFACT_BASE_URL=${ARTIFACT_BASE_URL:-"https://syftbox.net"}
+ARTIFACT_BASE_URL=${SYFTBOX_ARTIFACT_BASE_URL:-${ARTIFACT_BASE_URL:-"https://syftbox.net"}}
 ARTIFACT_DOWNLOAD_URL="$ARTIFACT_BASE_URL/releases"
 SYFTBOX_BINARY_PATH="$HOME/.local/bin/syftbox"
 
