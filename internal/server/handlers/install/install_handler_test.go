@@ -15,8 +15,8 @@ func TestInstallShellEnvironmentPrecedence(t *testing.T) {
 
 	probe := strings.Replace(
 		installShell,
-		`do_install "$@" || exit 1`,
-		`printf '%s|%s|%s|%s\n' "$INSTALL_MODE" "$INSTALL_APPS" "$ARTIFACT_BASE_URL" "$DEBUG"`,
+		"    debug_dump\n\n    pre_install",
+		"    printf '%s|%s|%s|%s\\n' \"$INSTALL_MODE\" \"$INSTALL_APPS\" \"$ARTIFACT_BASE_URL\" \"$DEBUG\"\n    return 0\n\n    pre_install",
 		1,
 	)
 	if probe == installShell {
